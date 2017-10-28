@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  countSale: 1
+  item: one
+  purchaser: one
+  merchants: one
+
+two:
+  countSale: 1
+  item: two
+  purchaser: two
+  merchants: two
