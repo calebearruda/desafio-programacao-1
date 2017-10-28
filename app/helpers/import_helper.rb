@@ -4,17 +4,17 @@ module ImportHelper
   
   def do_import originFile
     begin 
-      path = Pathname.new(Rails.root.join('public', 'uploads', originFile.original_filename))
+      path = Pathname.new(Rails.root.join('public', originFile.original_filename))
       
       unless path.extname == ".tab" || path.extname == ".txt"
         raise "Sorry, the file is not correct. We accept just file's .tab or .txt"
       end
       
-      if File.exists?(Rails.root.join('public', 'uploads', originFile.original_filename))
+      if File.exists?(Rails.root.join('public', originFile.original_filename))
         raise "Sorry, the file has already been imported!"
       end
       
-      File.open(Rails.root.join('public', 'uploads', originFile.original_filename), 'wb') do |file|
+      File.open(Rails.root.join('public', originFile.original_filename), 'wb') do |file|
         file.write(originFile.read)
       end
       
@@ -30,7 +30,7 @@ module ImportHelper
   
   
   def create_data fileName
-    File.readlines(Rails.root.join('public', 'uploads', fileName)).drop(1).each do |line|
+    File.readlines(Rails.root.join('public', fileName)).drop(1).each do |line|
       s = line.split(/\t/)
       
       ActiveRecord::Base.transaction do
